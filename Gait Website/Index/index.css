@@ -1,0 +1,267 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    /* height: 1000rem; */
+
+}
+
+:root {
+    --orange: #f79f1f;
+    --text-color-1: #444;
+    --text-color-2: #666;
+    --black: #000000;
+    --white: #ffffff;
+    --bg-color-1: #fff;
+    --bg-color-2: #eee;
+
+    --box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .4);
+
+}
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+    margin: 0;
+    text-transform: capitalize;
+    outline: none;
+    border: none;
+    padding: 0;
+    transition: all 0.2s linear;
+
+}
+
+html {
+    scroll-behavior: smooth;
+
+    overflow-x: hidden;
+    scroll-padding-top: 7rem;
+}
+
+.header {
+    background-color: var(--black);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+
+    /* kkkkkkk */
+    border-bottom-right-radius: 60px;
+    border-bottom-left-radius: 60px;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    color: var(--bg-color-2);
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-shadow: var(--box-shadow);
+    z-index: 1000;
+
+}
+
+.gait {
+    width: 100px;
+    /* height: 10%; */
+}
+
+.navigtor {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+}
+
+.ul_link {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: xx-large;
+    list-style-type: none;
+    text-decoration: none;
+    align-items: center;
+    text-align: center;
+
+}
+
+.link {
+    color: var(--bg-color-2);
+    list-style-type: none;
+    text-decoration: none;
+    list-style: none;
+    padding: 10px 20px;
+    border-radius: 2rem;
+
+}
+
+.link:hover {
+    color: var(--black);
+    background: var(--white);
+}
+
+.page_1 {
+    display: flex;
+    justify-content: center;
+    padding: 2%;
+}
+
+.content {
+    width: 80%;
+}
+
+.page_for_center {
+    display: flex;
+    justify-content: center;
+}
+
+.black_bold {
+    font-size: xx-large;
+    padding: 2%;
+    text-transform: capitalize;
+}
+
+.nav_act {
+    color: var(--black);
+    background: var(--white);
+}
+
+.git_nav {
+    display: flex;
+    justify-content: center;
+
+    color: var(--white);
+
+}
+
+.git {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    padding: 0.7%;
+    background: var(--black);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    align-items: center;
+    text-align: center;
+}
+
+.git_img {
+    width: 100px;
+}
+
+/* preidect page */
+
+#logs_page {
+    display: none;
+}
+
+#predict_page {
+    display: none;
+}
+
+.predict_1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.predict_2 {
+    background: var(--black);
+    border-radius: 2rem;
+    padding: 5px;
+    width: 15%;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.button_1 {
+    background: none;
+    color: var(--white);
+    padding: 8px 20px;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+.button_2 {
+    background: none;
+    color: var(--white);
+    padding: 8px 20px;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+.button_2:hover {
+    cursor: pointer;
+
+}
+
+.button_1 :hover {
+    cursor: pointer;
+}
+
+.act_btn {
+    background: var(--white);
+    color: var(--black);
+    border-radius: 22px;
+}
+
+.start_2 {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.start_1 {
+    display: flex;
+    justify-content: center;
+    background: var(--black);
+    width: 50%;
+    border-radius: 20px;
+    padding: 5%;
+}
+
+.start {
+    align-items: center;
+    text-align: center;
+    padding: 5%;
+    border-radius: 50px;
+    background: var(--white);
+    color: var(--black);
+    font-size: xx-large;
+}
+
+.start:hover {
+    cursor: pointer;
+}
+
+/* logs section */
+
+
+.class_tap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.class_tap1 {
+    width: 85%;
+}
+
+.thead-dark {
+    background-color: black;
+    color: #fff;
+}
+
+.tbody {
+    display: flex;
+    align-items: center;
+}
+
+.table {
+    width: 100%;
+    font-size: x-large;
+
+}
