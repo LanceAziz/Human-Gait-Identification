@@ -125,10 +125,18 @@ html {
     color: var(--black);
     background: var(--white);
 }
+#nav_act{
+    color: var(--black);
+    background: var(--white);
+}
 
 .git_nav {
+    position: fixed;
+    bottom: 0%;
+    width: 100%;
     display: flex;
     justify-content: center;
+    /* padding: 1rem; */
 
     color: var(--white);
 
@@ -137,11 +145,11 @@ html {
 .git {
     display: flex;
     justify-content: center;
-    width: 80%;
-    padding: 0.7%;
+    width: 100%;
+    padding: 1.5rem;
     background: var(--black);
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
     align-items: center;
     text-align: center;
 }

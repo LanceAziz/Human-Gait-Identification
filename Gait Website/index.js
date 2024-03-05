@@ -26,19 +26,51 @@ document.querySelector('#btn2').onclick=()=>{
     button_2.classList.add('act_btn')
     button_1.classList.remove('act_btn')
 }
+// let h = document.querySelector('#h')
+// document.querySelector('#h').onclick=()=>{
+//     h.classList.add('nav_act')
+//     p.classList.remove('nav_act')
+//     l.classList.remove('nav_act')
+//     g.classList.remove('nav_act')
+// }
+// let p = document.querySelector('#p')
+// document.querySelector('#p').onclick=()=>{
+//     h.classList.remove('nav_act')
+//     p.classList.add('nav_act')
+//     l.classList.remove('nav_act')
+//     g.classList.remove('nav_act')
+
+// }
+// let l = document.querySelector('#l')
+// document.querySelector('#l').onclick=()=>{
+//     h.classList.remove('nav_act')
+//     p.classList.remove('nav_act')
+//     l.classList.add('nav_act')
+//     g.classList.remove('nav_act')}
+// let g = document.querySelector('#g')
+// document.querySelector('#g').onclick=()=>{
+//     h.classList.remove('nav_act')
+//     p.classList.remove('nav_act')
+//     l.classList.remove('nav_act')
+//     g.classList.add('nav_act')}
+
+
 // moving in pages
 function bili(){
     var m =document.getElementById("home_page")
     var x =document.getElementById("predict_page")
     var r =document.getElementById("logs_page")
     var y =document.getElementById("guide_page")
-    var t =document.getElementById("h")
+    var h = document.getElementById('h')
     
     m.style.display="block";
     x.style.display="none";
     r.style.display="none";
     y.style.display="none";
-    t.classList.add('nav_act')
+    h.style.color="black";
+    h.style.background="white";
+
+   
 
 
 }
