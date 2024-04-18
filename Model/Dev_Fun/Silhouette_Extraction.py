@@ -1,40 +1,9 @@
-from __future__ import division
+from __future__ import print_function
 import cv2
 import torch
 import torch.nn.functional as F
 from torchvision import transforms
-
-#Silhouette V1
-def sil_preprocess(frame,fgbg,blurValue,binThreshold):
-
-    # Background Subtraction
-    silhouette = fgbg.apply(frame)
-
-    # Noise Reduction
-    blur = cv2.medianBlur(silhouette, blurValue)
-
-    # Binarization
-    _, binary_mask = cv2.threshold(blur, binThreshold, 255, cv2.THRESH_BINARY)
-
-    # Find contours in the binary mask
-    contours, _ = cv2.findContours(binary_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
-    # Initialize bounding box coordinates
-    x, y, w, h = 0, 0, 0, 0
-
-    # Iterate through contours to find the bounding box of the largest contour
-    for contour in contours:
-        x_, y_, w_, h_ = cv2.boundingRect(contour)
-        if w_ * h_ > w * h:  # Update bounding box if current contour is larger
-            x, y, w, h = x_, y_, w_, h_
-
-    # Crop the silhouette image using the bounding box
-    roi = frame[y:y+h, x:x+w]
-
-    # Resize the ROI to (64x44)
-    roi = cv2.resize(roi, (64, 44))
-
-    return roi
+import time
 
 # Load pretrained model
 model = torch.hub.load('pytorch/vision:v0.6.0', 'deeplabv3_resnet101', pretrained=True)
@@ -57,7 +26,7 @@ preprocess = transforms.Compose([
 	transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
 ])
 
-#Silhouette V2
+# Function to create segmentation mask
 def makeSegMask(img):
     # Scale input frame
 	frame_data = torch.FloatTensor( img ) / 255.0
@@ -91,7 +60,63 @@ def makeSegMask(img):
 	combined_mask = combined_mask.expand(1, 3, -1, -1)
 
 	res = (combined_mask * 255.0).cpu().squeeze().byte().permute(1, 2, 0).numpy()
-	
-	_,thresh = cv2.threshold(res,127,255,cv2.THRESH_BINARY)
 
-	return thresh
+	return res
+
+if __name__ == '__main__':
+    # Loads video file into CV2
+    video = cv2.VideoCapture('3_cropped.avi')
+    
+    # Get video file's dimensions
+    frame_width = int(video.get(3))
+    frame_height = int(video.get(4))
+    
+    # Creates output video file
+    out = cv2.VideoWriter('3_fcn.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 30, (frame_width,frame_height))
+
+    prev_frame_time = 0
+    new_frame_time = 0
+
+    while (video.isOpened):
+        # Read each frame one by one
+        success, img = video.read()
+        
+        # Run if there are still frames left
+        if (success):
+            
+            # Apply background subtraction to extract foreground (silhouette)
+            mask = makeSegMask(img)
+            
+            # Apply thresholding to convert mask to binary map
+            ret,thresh = cv2.threshold(mask,127,255,cv2.THRESH_BINARY)
+            
+            # Write processed frame to output file
+            out.write(thresh)
+            
+            new_frame_time = time.time()
+            fps = 1/(new_frame_time-prev_frame_time)
+            prev_frame_time = new_frame_time 
+            fps = str(fps)
+            print(fps)
+            # cv2.rectangle(mask, (10, 2), (100,20), (255,255,255), -1)
+            # cv2.putText(mask, fps, (15, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5 , (0,0,0))
+            
+            # Show extracted silhouette only, by multiplying mask and input frame
+            final = cv2.bitwise_and(thresh, img)
+            
+            # Show current frame
+            cv2.imshow('Silhouette Mask', mask)
+            cv2.imshow('Extracted Silhouette', final)
+            
+            # Allow early termination with Esc key
+            key = cv2.waitKey(10)
+            if key == 27:
+                break
+        # Break when there are no more frames  
+        else:
+            break
+
+    # Release resources
+    cv2.destroyAllWindows()
+    video.release()
+    out.release()

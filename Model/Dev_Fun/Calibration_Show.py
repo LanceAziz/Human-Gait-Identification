@@ -2,7 +2,7 @@ from __future__ import division
 import cv2
 import mediapipe as mp
 import numpy as np
-from Dev_Fun.Silhouette_Extraction import sil_preprocess,makeSegMask
+from Dev_Fun.Silhouette_Extraction import makeSegMask
 from Dev_Fun.Joints_Extraction import mediapipe_detection, draw_landmarks
 
 mp_holistic = mp.solutions.holistic # Holistic model
