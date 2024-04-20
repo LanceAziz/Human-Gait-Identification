@@ -5,6 +5,41 @@ import torch.nn.functional as F
 from torchvision import transforms
 import time
 
+
+def sil_preprocess(frame,fgbg,blurValue,binThreshold):
+
+    # Background Subtraction
+    silhouette = fgbg.apply(frame)
+
+    # Noise Reduction
+    blur = cv2.medianBlur(silhouette, blurValue)
+
+    # Binarization
+    _, binary_mask = cv2.threshold(blur, binThreshold, 255, cv2.THRESH_BINARY)
+
+    return binary_mask
+
+# Load pretrained model
+model = torch.hub.load('pytorch/vision:v0.6.0', 'deeplabv3_resnet101', pretrained=True)
+# Segment people only for the purpose of human silhouette extraction
+people_class = 15
+
+# Evaluate model
+model.eval()
+print ("Model has been loaded.")
+
+blur = torch.FloatTensor([[[[1.0, 2.0, 1.0],[2.0, 4.0, 2.0],[1.0, 2.0, 1.0]]]]) / 16.0
+
+# Use GPU if supported, for better performance
+if torch.cuda.is_available():
+	model.to('cuda')
+	blur = blur.to('cuda')
+
+# Apply preprocessing (normalization)
+preprocess = transforms.Compose([
+	transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+])
+
 # Load pretrained model
 model = torch.hub.load('pytorch/vision:v0.6.0', 'deeplabv3_resnet101', pretrained=True)
 # Segment people only for the purpose of human silhouette extraction
