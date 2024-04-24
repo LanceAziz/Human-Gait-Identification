@@ -8,7 +8,7 @@ from Dev_Fun.Joints_Extraction import mediapipe_detection, draw_landmarks
 mp_holistic = mp.solutions.holistic # Holistic model
 mp_drawing = mp.solutions.drawing_utils # Drawing utilities
 
-def Calib_Show(feed):
+def Calib_Show(feed = 0):
     cap = cv2.VideoCapture(feed)
     fgbg = cv2.createBackgroundSubtractorKNN()
     # fgbg = cv2.createBackgroundSubtractorKNN(history=200, dist2Threshold=30)
