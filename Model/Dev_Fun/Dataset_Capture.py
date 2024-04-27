@@ -3,9 +3,9 @@ import cv2
 import mediapipe as mp
 import numpy as np
 import os
-from Dev_Fun.Joints_Extraction import mediapipe_detection,draw_landmarks
 import winsound
 from PIL import Image
+from Dev_Fun.Calibration_Show import mediapipe_detection,draw_landmarks
 
 mp_holistic = mp.solutions.holistic # Holistic model
 mp_drawing = mp.solutions.drawing_utils # Drawing utilities
