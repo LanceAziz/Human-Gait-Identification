@@ -4,7 +4,7 @@ import numpy as np
 import mediapipe as mp
 import keras
 from collections import Counter
-from Calibration_Show import mediapipe_detection, draw_landmarks
+from Dev_Fun.Calibration_Show import mediapipe_detection, draw_landmarks
 from Dev_Fun.Pre_Process import pre_process
 
 def pred_show(feed, model, names, subjects):
@@ -23,18 +23,23 @@ def pred_show(feed, model, names, subjects):
                 print("End of video.")
                 break
 
-            # #RGB
-            # image, results = mediapipe_detection(frame, holistic)
-            # draw_landmarks(image, results)
-            # cv2.imshow('Gait ID (RBG)', image)
+            #RGB
+            image, results = mediapipe_detection(frame, holistic)
+            draw_landmarks(image, results)
+            
 
-            # #Silhouette V2
+            #Silhouette V2
             sil = pre_process(frame)
-            sequence.append(sil)
-            # cv2.imshow('Gait ID (Silhouette V2)', sil)
+            if np.all(sil == 0):
+                if len(sequence) == 30:
+                    break
+                print("not pushed")
+            else:
+                sequence.append(sil)
+                cv2.imshow('Gait ID (RBG)', image)
+                cv2.imshow('Gait ID (Silhouette V2)', sil)
 
             sequence = sequence[-30:]
-            
             if len(sequence) == 30:
                 res = model.predict(np.expand_dims(sequence, axis=0))[0]
                 if subjects[np.argmax(res)] in names:
