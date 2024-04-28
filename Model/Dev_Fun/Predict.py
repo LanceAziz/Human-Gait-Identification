@@ -88,3 +88,5 @@ def final_pred(video,model_path):
     finalPred = pred_show(video,model,names,subjects)
     name = high_prob(finalPred)
     print (name)
+
+    return name
