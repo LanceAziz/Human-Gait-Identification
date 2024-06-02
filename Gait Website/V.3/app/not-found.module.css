@@ -1,0 +1,48 @@
+.gifNotFound{
+    width: 15rem;
+    height: auto;
+}
+.notFoundFontSize{
+    font-size: 20rem;
+}
+.rounded{
+    border-radius: 5rem;
+}
+.padding{
+    padding: 3rem 10rem;
+}
+.btnPadding{
+    padding: 1rem 2rem;
+}
+
+
+@media (max-width: 575.98px) {
+    .gifNotFound{
+        width: 4rem;
+        height: auto;
+    }
+    .notFoundFontSize{
+        font-size: 7rem;
+    }
+    .rounded{
+        border-radius: 3rem;
+    }
+    .padding{
+        padding: 1rem 3rem;
+    }
+  }
+@media (min-width: 575.98px) and (max-width:  1000px) {
+    .gifNotFound{
+        width: 7rem;
+        height: auto;
+    }
+    .notFoundFontSize{
+        font-size: 12rem;
+    }
+    .rounded{
+        border-radius: 3rem;
+    }
+    .padding{
+        padding: 2rem 4rem;
+    }    
+  }
