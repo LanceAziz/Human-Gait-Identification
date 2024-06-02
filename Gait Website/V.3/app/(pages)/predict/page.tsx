@@ -35,10 +35,17 @@ function Predict() {
                                 <input type="radio" name="radio" />
                                 <span className={`${styles.name} fs-5`}>Live</span>
                             </label>
+                            <label className={`${styles.radio}`}>
+                                <input type="radio" name="radio" />
+                                <span className={`${styles.name} fs-5`}>Browse</span>
+                            </label>
                         </div>
                     </div>
                 </div>
-                <div className="row justify-content-center">
+                <div className="d-flex justify-content-center align-items-center">
+                    <div className="z-2 position-absolute">
+                        <button className={`${styles.gaitRounded}`}>Start</button>
+                    </div>
                     <div className={`col-md-12 ${styles.videoPlaceholder} `}></div>
                 </div>
                 <div className="row pt-4">

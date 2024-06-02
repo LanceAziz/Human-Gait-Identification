@@ -16,12 +16,12 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.1",
+    "@next/font": "^14.2.3",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "embla-carousel-autoplay": "^8.1.2",
     "embla-carousel-react": "^8.1.2",
     "next": "14.2.3",
-    "next-video": "^1.0.6",
     "react": "^18",
     "react-bootstrap": "^2.10.2",
     "react-dom": "^18",
@@ -35,6 +35,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
+    "next-video": "^1.0.7",
     "typescript": "^5"
   }
 }

@@ -44,3 +44,23 @@
   border-radius: 2rem;
   background-color: var(--dark-color);
 }
+
+.gaitRounded {
+  padding: 3.8rem 3rem;
+  border: solid 0.4rem var(--light-color);
+  border-radius: 6rem;
+  font-size: xx-large;
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  transition: 0.5s;
+}
+.gaitRounded:hover {
+  padding: 6rem 4.5rem;
+  border: solid 0.4rem var(--light-color);
+  border-radius: 9rem;
+  font-size: xx-large;
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  font-size: 3rem;
+  transition: 0.5s;
+}

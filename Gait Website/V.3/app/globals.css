@@ -4,11 +4,10 @@
   --dark-color: #000000;
   --nav-font-size: 2rem;
   --nav-font-weight: 600;
-  --font-family: 'Poppins';
 }
 
 * {
-  font-family: var(--font-family) !important;
+  font-family: var(--font-poppins) !important;
 }
 
 ::-webkit-scrollbar {
