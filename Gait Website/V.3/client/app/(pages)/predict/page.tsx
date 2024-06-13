@@ -1,7 +1,7 @@
 'use client';
 import styles from "./Predict.module.css"
 import Link from "next/link";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ReactPlayer from 'react-player'
 
 function Predict() {
@@ -10,15 +10,8 @@ function Predict() {
     const [video, setVideo] = useState<File | undefined>(undefined);
     const [videoURL, setVideoURL] = useState<String | undefined>(undefined);
     const [message, setMessage] = useState('____')
-
-    useEffect(() => {
-        fetch("http://localhost:8080/api/predictions")
-            .then((response) => response.json())
-            .then((data) => {
-                setMessage(data.message)
-                console.log(message);
-            });
-    }, []);
+    const ref = useRef<HTMLInputElement>(null);
+    const postAPI = '/post/predictions'
 
     const settingMedia = (source: string) => {
         setVideoURL(undefined);
@@ -40,11 +33,24 @@ function Predict() {
         }
     }
 
-    const browseAction = () => {
-        if (video) {
-            console.log('browse');
+    const browseAction = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (!video) return;
+        setLoading(true);
+        try {
+            const data = new FormData();
+            data.set('file', video);
+            const res = await fetch(postAPI, {
+                method: 'POST',
+                body: data,
+            });
+            if (!res.ok) throw new Error(await res.text());
+            ref.current && (ref.current.value = '');
+        } catch (e) {
+            console.error(e);
+        } finally {
+            setLoading(false);
         }
-
     }
 
     const startAction = (source: string) => {
@@ -53,7 +59,7 @@ function Predict() {
                 console.log('Live is not functional ... yet ;)');
                 break;
             case 'Browse':
-                browseAction();
+                browseAction;
                 break;
             default:
                 console.log('Neither live nor browse ... Error :(');
@@ -97,7 +103,7 @@ function Predict() {
                                     <div className={`${styles.hourglassGlass}`}></div>
                                 </div>
                             </button> :
-                            <button onClick={() => startAction(mediaSource)} className={`${styles.gaitRounded}`}>Start</button>
+                            <button onClick={()=>browseAction} className={`${styles.gaitRounded}`}>Start</button>
                         }
 
                     </div>
@@ -108,7 +114,7 @@ function Predict() {
                     </div>
                 </div>
                 <div className="row pt-4">
-                    <h2 className=" d-flex justify-content-center">Name: <span id="PredictionResult">{' '+ message}</span></h2>
+                    <h2 className=" d-flex justify-content-center">Name: <span id="PredictionResult">{' ' + message}</span></h2>
                 </div>
             </div>
         </>
