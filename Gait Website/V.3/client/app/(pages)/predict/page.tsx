@@ -1,24 +1,39 @@
 'use client';
 import styles from "./Predict.module.css"
 import Link from "next/link";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import ReactPlayer from 'react-player'
 
 function Predict() {
+    // Variables
     const [mediaSource, setMediaSource] = useState('Live');
     const [loading, setLoading] = useState(false);
     const [video, setVideo] = useState<File | undefined>(undefined);
-    const [videoURL, setVideoURL] = useState<String | undefined>(undefined);
-    const [message, setMessage] = useState('____')
+    const [videoURL, setVideoURL] = useState<string | undefined>(undefined);
+    const [message, setMessage] = useState('____');
     const ref = useRef<HTMLInputElement>(null);
-    const postAPI = '/post/predictions'
+    const postAPI = 'http://localhost:8080/post/predictions';
 
+    // (settingMedia) function set the media source to be either LIVE or BROWSE
     const settingMedia = (source: string) => {
         setVideoURL(undefined);
         setVideo(undefined);
-        setMediaSource(source)
-    }
+        setMediaSource(source);
+    };
 
+    // (startAction) function redirects the code to either LIVE or BROWSE
+    const startAction = async (source: string) => {
+        switch (source) {
+            case 'Live':
+                console.log('Live is not functional ... yet ;)');
+                break;
+            case 'Browse':
+                await browseAction();
+                break;
+        }
+    };
+
+    // (extractFilePath) function set the video to be previewed 
     const extractFilePath = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         setVideo(file);
@@ -31,10 +46,10 @@ function Predict() {
         } else {
             setVideoURL(undefined);
         }
-    }
+    };
 
-    const browseAction = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    // (browseAction) function sends the browsed video to the backend
+    const browseAction = async () => {
         if (!video) return;
         setLoading(true);
         try {
@@ -45,79 +60,66 @@ function Predict() {
                 body: data,
             });
             if (!res.ok) throw new Error(await res.text());
+            const result = await res.json();
+            setMessage(result.message); // Display the success message from the backend
             ref.current && (ref.current.value = '');
         } catch (e) {
             console.error(e);
         } finally {
             setLoading(false);
         }
-    }
-
-    const startAction = (source: string) => {
-        switch (source) {
-            case 'Live':
-                console.log('Live is not functional ... yet ;)');
-                break;
-            case 'Browse':
-                browseAction;
-                break;
-            default:
-                console.log('Neither live nor browse ... Error :(');
-        }
-    }
+    };
 
     return (
-        <>
-            <div className="div container px-5">
-                <div className="row">
-                    <div className="col-12 d-flex justify-content-center  py-3">
-                        <div className={`${styles.radioInputs}`}>
-                            <label className={`${styles.radio}`}>
-                                <input id="liveInput" type="radio" name="radio" />
-                                <span onClick={() => settingMedia('Live')} className={`${styles.name} fs-5`}>Live</span>
-                            </label>
-                            <label className={`${styles.radio}`}>
-                                <input id="BrowseInput" type="radio" name="radio" />
-                                <span onClick={() => settingMedia('Browse')} className={`${styles.name} fs-5`}>Browse</span>
-                            </label>
+        <div className="div container px-5">
+            <div className="row">
+                <div className="col-12 d-flex justify-content-center py-3">
+                    <div className={`${styles.radioInputs}`}>
+                        <label className={`${styles.radio}`}>
+                            <input id="liveInput" type="radio" name="radio" />
+                            <span onClick={() => settingMedia('Live')} className={`${styles.name} fs-5`}>Live</span>
+                        </label>
+                        <label className={`${styles.radio}`}>
+                            <input id="BrowseInput" type="radio" name="radio" />
+                            <span onClick={() => settingMedia('Browse')} className={`${styles.name} fs-5`}>Browse</span>
+                        </label>
+                    </div>
+                </div>
+                {mediaSource == 'Browse' &&
+                    <div className="col-12 d-flex justify-content-center pb-3">
+                        <div className="col-6 bg-black rounded rounded-5 p-1">
+                            <input id="BrowseBtn" type="file" onChange={extractFilePath} ref={ref} />
                         </div>
-                    </div>
-                    {mediaSource == 'Browse' &&
-                        <div className="col-12 d-flex justify-content-center pb-3">
-                            <div className="col-6 bg-black rounded rounded-5 p-1">
-                                <input id="BrowseBtn" type="file" onChange={extractFilePath} />
+                    </div>}
+            </div>
+            <div className="d-flex justify-content-center align-items-center">
+                <div className="z-2 position-absolute">
+                    {loading ?
+                        <button className={`${styles.hourglassBackground}`}>
+                            <div className={`${styles.hourglassContainer}`}>
+                                <div className={`${styles.hourglassCurves}`}></div>
+                                <div className={`${styles.hourglassCapTop}`}></div>
+                                <div className={`${styles.hourglassGlassTop}`}></div>
+                                <div className={`${styles.hourglassSand}`}></div>
+                                <div className={`${styles.hourglassSandStream}`}></div>
+                                <div className={`${styles.hourglassCapBottom}`}></div>
+                                <div className={`${styles.hourglassGlass}`}></div>
                             </div>
-                        </div>}
-                </div>
-                <div className="d-flex justify-content-center align-items-center">
-                    <div className="z-2 position-absolute">
-                        {loading ?
-                            <button className={`${styles.hourglassBackground}`}>
-                                <div className={`${styles.hourglassContainer}`}>
-                                    <div className={`${styles.hourglassCurves}`}></div>
-                                    <div className={`${styles.hourglassCapTop}`}></div>
-                                    <div className={`${styles.hourglassGlassTop}`}></div>
-                                    <div className={`${styles.hourglassSand}`}></div>
-                                    <div className={`${styles.hourglassSandStream}`}></div>
-                                    <div className={`${styles.hourglassCapBottom}`}></div>
-                                    <div className={`${styles.hourglassGlass}`}></div>
-                                </div>
-                            </button> :
-                            <button onClick={()=>browseAction} className={`${styles.gaitRounded}`}>Start</button>
-                        }
+                        </button> :
+                        <button onClick={() => startAction(mediaSource)} className={`${styles.gaitRounded}`}>Start</button>
+                    }
 
-                    </div>
-                    <div className={`col-md-12 overflow-hidden ${styles.videoPlaceholder} `}>
-                        {video && videoURL && (
-                            <ReactPlayer className="w-100 h-100" url={videoURL} playing={true} loop={true} controls={false} autoplay />
-                        )}
-                    </div>
                 </div>
-                <div className="row pt-4">
-                    <h2 className=" d-flex justify-content-center">Name: <span id="PredictionResult">{' ' + message}</span></h2>
+                <div className={`col-md-12 overflow-hidden ${styles.videoPlaceholder} `}>
+                    {video && videoURL && (
+                        <ReactPlayer className="w-100 h-100" url={videoURL} playing={true} loop={true} controls={false} autoplay />
+                    )}
                 </div>
             </div>
-        </>
+            <div className="row pt-4">
+                <h2 className="d-flex justify-content-center">Message: <span id="PredictionResult">{' ' + message}</span></h2>
+            </div>
+        </div>
     );
 }
-export default Predict
+export default Predict;

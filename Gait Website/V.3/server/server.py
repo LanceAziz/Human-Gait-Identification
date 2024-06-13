@@ -21,7 +21,7 @@ def upload_file():
     file.save(file_path)
     
     print(f'File saved to {file_path}')
-    return jsonify(success=True, file_path=file_path)
+    return jsonify(success=True, message="File successfully uploaded")
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
