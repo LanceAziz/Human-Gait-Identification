@@ -44,6 +44,9 @@ We created a custom dataset with the following specifications:
 1. Flask (flask, flask-cors)
 2. Firebase Admin
 
+## Preprocessing
+We combined the CASIA-B dataset with our custom dataset, resulting in a total of 130 subjects. Each subject has 11 views, with each view containing 10 videos. Each video averages 40 frames which get captured by the implemenation in next section [`dataset_capture` function)](https://github.com/LanceAziz/Human-Gait-Identification/tree/main?tab=readme-ov-file#developed-functions) , but we only used the 90-degree view for training the model. Human silhouettes were extracted from each frame using a pre-trained model from [this repo](https://github.com/jordankzf/human-silhouette-extractor) whcih is implemented in next section [`sil_V2` function)](https://github.com/LanceAziz/Human-Gait-Identification/tree/main?tab=readme-ov-file#developed-functions) then cropped using a custom code whcih is implemented in next section [`crop_to_person` function](https://github.com/LanceAziz/Human-Gait-Identification/tree/main?tab=readme-ov-file#developed-functions).
+
 ## Developed Functions
 
 1. **Calibration_Show.py**
@@ -62,9 +65,6 @@ We created a custom dataset with the following specifications:
    - `pred_show(feed, model, names, subjects)`: Applies prediction
    - `high_prob(predictions)`: Decides which subject has the highest probability of being correct
    - `final_pred(video, model_path)`: Applies all preprocessing needed
-
-## Preprocessing
-We combined the CASIA-B dataset with our custom dataset, resulting in a total of 130 subjects. Each subject has 11 views, with each view containing 10 videos. Each video averages 40 frames which get captured by the implemenation in next section [Developed Functions (dataset_capture)](https://github.com/LanceAziz/Human-Gait-Identification/tree/main?tab=readme-ov-file#developed-functions) , but we only used the 90-degree view for training the model. Human silhouettes were extracted from each frame using a pre-trained model from [this repo](https://github.com/jordankzf/human-silhouette-extractor) whcih is implemented in next section [Developed Functions (sil_V2)](https://github.com/LanceAziz/Human-Gait-Identification/tree/main?tab=readme-ov-file#developed-functions) then cropped using a custom code whcih is implemented in next section [Developed Functions (crop_to_person)](https://github.com/LanceAziz/Human-Gait-Identification/tree/main?tab=readme-ov-file#developed-functions).
 
 ## Model Parameters
 - **Model**: CNN
