@@ -1,3 +1,5 @@
 Model/Test_Samples
-Gait Website/V.3/client/firebase.ts
+Gait Website/V.3/client/node_modules
+Gait Website/V.3/server/env/
 Gait Website/V.3/server/Uploaded Files
+Gait Website/V.3/server/firebase.json

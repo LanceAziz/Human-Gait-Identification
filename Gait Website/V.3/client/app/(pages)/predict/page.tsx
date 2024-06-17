@@ -18,6 +18,7 @@ function Predict() {
     const settingMedia = (source: string) => {
         setVideoURL(undefined);
         setVideo(undefined);
+        setMessage('____')
         setMediaSource(source);
     };
 
@@ -95,15 +96,15 @@ function Predict() {
             <div className="d-flex justify-content-center align-items-center">
                 <div className="z-2 position-absolute">
                     {loading ?
-                        <button className={`${styles.hourglassBackground}`}>
-                            <div className={`${styles.hourglassContainer}`}>
-                                <div className={`${styles.hourglassCurves}`}></div>
-                                <div className={`${styles.hourglassCapTop}`}></div>
-                                <div className={`${styles.hourglassGlassTop}`}></div>
-                                <div className={`${styles.hourglassSand}`}></div>
-                                <div className={`${styles.hourglassSandStream}`}></div>
-                                <div className={`${styles.hourglassCapBottom}`}></div>
-                                <div className={`${styles.hourglassGlass}`}></div>
+                        <button className='hourglassBackground'>
+                            <div className='hourglassContainer'>
+                                <div className='hourglassCurves'></div>
+                                <div className='hourglassCapTop'></div>
+                                <div className='hourglassGlassTop'></div>
+                                <div className='hourglassSand'></div>
+                                <div className='hourglassSandStream'></div>
+                                <div className='hourglassCapBottom'></div>
+                                <div className='hourglassGlass'></div>
                             </div>
                         </button> :
                         <button onClick={() => startAction(mediaSource)} className={`${styles.gaitRounded}`}>Start</button>
@@ -112,7 +113,7 @@ function Predict() {
                 </div>
                 <div className={`col-md-12 overflow-hidden ${styles.videoPlaceholder} `}>
                     {video && videoURL && (
-                        <ReactPlayer className="w-100 h-100" url={videoURL} playing={true} loop={true} controls={false} autoplay />
+                        <ReactPlayer className="w-100 h-100" url={videoURL} playing={true} loop={true} controls={false} muted={true} autoplay />
                     )}
                 </div>
             </div>
