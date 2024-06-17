@@ -20,6 +20,29 @@ We created a custom dataset with the following specifications:
 - **Clothing**: Legs should be visible and not obscured by clothing. Items carried near the legs (like bags or suitcases) are not allowed.
 - **Distance**: Person’s height should occupy 50% – 80% of the frame height.
 
+## Libraries Used
+
+### Front-End
+1. Bootstrap
+2. Font Awesome
+3. Swiper
+4. Sharp
+5. React Player
+
+### Back-End
+
+#### AI Packages
+1. OpenCV
+2. Numpy
+3. MediaPipe
+4. Pytorch (torch, torchvision)
+5. Tensorflow
+6. Keras
+
+#### Non-AI Packages
+1. Flask (flask, flask-cors)
+2. Firebase Admin
+
 ## Preprocessing
 We combined the CASIA-B dataset with our custom dataset, resulting in a total of 130 subjects. Each subject has 11 views, with each view containing 10 videos. Each video averages 40 frames, but we only used the 90-degree view for training the model. Human silhouettes were extracted from each frame using a pre-trained model from [this paper](https://github.com/jordankzf/human-silhouette-extractor) and then cropped using a custom code.
 
