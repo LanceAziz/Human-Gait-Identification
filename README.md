@@ -23,11 +23,12 @@ We created a custom dataset with the following specifications:
 ## Libraries Used
 
 ### Front-End
-1. Bootstrap
-2. Font Awesome
-3. Swiper
-4. Sharp
-5. React Player
+1. Next jS
+2. Bootstrap
+3. Font Awesome
+4. Swiper
+5. Sharp
+6. React Player
 
 ### Back-End
 
@@ -42,6 +43,25 @@ We created a custom dataset with the following specifications:
 #### Non-AI Packages
 1. Flask (flask, flask-cors)
 2. Firebase Admin
+
+## Developed Functions
+
+1. **Calibration_Show.py**
+   - `Calib_Show(feed=0)`: used to calibrate before capturing dataset
+
+2. **Dataset_Capture.py**
+   - `dataset_capture(persons, no_sequences, path, sequence_length, feed)`: used to capture dataset with the specified parameters or any others
+
+3. **Pre_Process.py**
+   - `sil_V1(frame, fgbg=cv2.createBackgroundSubtractorKNN(), blurValue=13, binThreshold=128)`: version one of the background subtraction (not very good)
+   - `sil_V2(img)`: version two of the background subtraction (perfect but time and resource-consuming)
+   - `crop_to_person(image, target_size=(64, 44))`: crops the frame to fit the subject in place and resize it to the given size
+   - `pre_process(frame, width=240, height=320)`: applies all the pre-processing needed to match CASIA-B dataset
+
+4. **Predict.py**
+   - `pred_show(feed, model, names, subjects)`: applies prediction
+   - `high_prob(predictions)`: decides which subject has the highest probability of being correct
+   - `final_pred(video, model_path)`: applies all preprocessing needed
 
 ## Preprocessing
 We combined the CASIA-B dataset with our custom dataset, resulting in a total of 130 subjects. Each subject has 11 views, with each view containing 10 videos. Each video averages 40 frames, but we only used the 90-degree view for training the model. Human silhouettes were extracted from each frame using a pre-trained model from [this paper](https://github.com/jordankzf/human-silhouette-extractor) and then cropped using a custom code.
@@ -62,4 +82,6 @@ We combined the CASIA-B dataset with our custom dataset, resulting in a total of
 
 ## References
 For more details and access to the project files, please visit the following link:
-- [Project Drive](https://drive.google.com/drive/folders/1gg3QxzGaEgoNfJHqdIfawpqWiyNAnPIG?usp=sharing)
+- [Papers](https://drive.google.com/drive/folders/1gg3QxzGaEgoNfJHqdIfawpqWiyNAnPIG?usp=sharing)
+- [Project Presentation](https://docs.google.com/presentation/d/1OnKiwiAxGaU0qXdyUYWUnzbNxZa1q-avD-DjpoMIrT8/edit?usp=sharing)
+- [Prject Documentation](https://docs.google.com/document/d/1_24qzsbDrQGXjzNLKJijXmUYFotNcfmQXKVJIIzbKDE/edit?usp=drive_link)
