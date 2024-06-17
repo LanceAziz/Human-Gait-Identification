@@ -55,7 +55,7 @@ function Logs() {
         <div className="container px-5">
             <div className="row">
                 <h2 className="text-center pt-4 pb-2">Logs</h2>
-                <input type="text" placeholder='Saech Name' className={`rounded rounded-5 form-control my-3 ${styles.gaitBoxShadow} `} onChange={(e) => setSearch(e.target.value)} disabled={loading} />
+                <input type="text" placeholder='Search Name' className={`rounded rounded-5 form-control my-3 ${styles.gaitBoxShadow} `} onChange={(e) => setSearch(e.target.value)} disabled={loading} />
                 {loading ? (
                     <button className='hourglassBackground'>
                         <div className='hourglassContainer'>

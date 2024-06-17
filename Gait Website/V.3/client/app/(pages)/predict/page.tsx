@@ -26,7 +26,7 @@ function Predict() {
     const startAction = async (source: string) => {
         switch (source) {
             case 'Live':
-                console.log('Live is not functional ... yet ;)');
+                await liveAction();
                 break;
             case 'Browse':
                 await browseAction();
@@ -70,6 +70,16 @@ function Predict() {
             setLoading(false);
         }
     };
+
+    const liveAction = async () => {
+        // try {
+        //     const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        //     setVideoURL(stream); // Set the stream object directly as URL
+        // } catch (error) {
+        //     console.error('Error accessing camera:', error);
+        // }
+    };
+
 
     return (
         <div className="div container px-5">

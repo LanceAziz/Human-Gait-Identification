@@ -33,7 +33,7 @@ export default function Home() {
       <div className="container px-5">
         <div className="row">
           <h1 className="text-center pt-4 pb-2">Human Gait Identification</h1>
-          <p>Our graduation project focuses on gait analysis as a means of predicting a person's identity through their distinctive walking patterns. Gait recognition, an emerging field in biometrics, provides a non-intrusive and innovative approach to person identification. This project explores the feasibility and effectiveness of utilizing gait as a unique biometric identifier, contributing to advancements in security and authentication systems.</p>
+          <p>Our graduation project focuses on gait analysis as a means of predicting a person&apos;s identity through their distinctive walking patterns. Gait recognition, an emerging field in biometrics, provides a non-intrusive and innovative approach to person identification. This project explores the feasibility and effectiveness of utilizing gait as a unique biometric identifier, contributing to advancements in security and authentication systems.</p>
           <h2 className="text-center pt-5 pe-3">Acknowledgement</h2>
           <p>We extend our deepest appreciation for the guidance and mentorship of:</p>
           <Swiper
@@ -65,7 +65,7 @@ export default function Home() {
               </div>
             </div>
           </Swiper>
-          <p className="pt-2">Additionally, Our team members who played pivotal roles in the project's success:</p>
+          <p className="pt-2">Additionally, Our team members who played pivotal roles in the project&apos;s success:</p>
           <Swiper
             effect={'coverflow'} grabCursor={true} centeredSlides={true} loop={true} slidesPerView={'auto'}
             coverflowEffect={{ rotate: 0, stretch: 0, depth: 100, modifier: 2.5, slideShadows: false }}

@@ -33,10 +33,10 @@ function Nav() {
                     </label>
                 </button>
                 <div className="collapse navbar-collapse row g-0 col-lg-10 py-2" id="navbarSupportedContent">
-                    {navLinks.map((link) => {
+                    {navLinks.map((link,index) => {
                         const isActive = pathname.endsWith(link.href)
                         return (
-                            <div className="col-lg-3 px-3 py-1">
+                            <div key={index} className="col-lg-3 px-3 py-1">
                                 <Link className={`gait-btn fs-3 text-center py-3 ${isActive ? 'gait-btn-selected' : ''}`} href={link.href}>{link.name}</Link>
                             </div>
                         );

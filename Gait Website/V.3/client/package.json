@@ -24,6 +24,7 @@
     "react-bootstrap": "^2.10.2",
     "react-dom": "^18",
     "react-player": "^2.16.0",
+    "sharp": "^0.33.4",
     "swiper": "^11.1.3"
   },
   "devDependencies": {
