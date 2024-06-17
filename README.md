@@ -3,7 +3,8 @@
 ## Overview
 This project is a human gait recognition system that uses deep learning to detect and recognize individuals based on their walking patterns. The system is built with Next.js for the front-end, Flask for the back-end, and Firebase as the database. A Convolutional Neural Network (CNN) model, developed by myself, is utilized to perform the gait recognition.
 
-![website Screenshots](Images/Image 1.png)
+![website Screenshots](https://github.com/LanceAziz/Human-Gait-Identification/blob/main/image1.png?raw=true)
+
 
 ## Dataset
 
