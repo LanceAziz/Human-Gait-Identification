@@ -47,24 +47,24 @@ We created a custom dataset with the following specifications:
 ## Developed Functions
 
 1. **Calibration_Show.py**
-   - `Calib_Show(feed=0)`: used to calibrate before capturing dataset
+   - `Calib_Show(feed=0)`: Used to calibrate before capturing dataset
 
 2. **Dataset_Capture.py**
-   - `dataset_capture(persons, no_sequences, path, sequence_length, feed)`: used to capture dataset with the specified parameters or any others
+   - `dataset_capture(persons, no_sequences, path, sequence_length, feed)`: Used to capture dataset with the specified parameters or any others
 
 3. **Pre_Process.py**
-   - `sil_V1(frame, fgbg=cv2.createBackgroundSubtractorKNN(), blurValue=13, binThreshold=128)`: version one of the background subtraction (not very good)
-   - `sil_V2(img)`: version two of the background subtraction (perfect but time and resource-consuming)
-   - `crop_to_person(image, target_size=(64, 44))`: crops the frame to fit the subject in place and resize it to the given size
-   - `pre_process(frame, width=240, height=320)`: applies all the pre-processing needed to match CASIA-B dataset
+   - `sil_V1(frame, fgbg=cv2.createBackgroundSubtractorKNN(), blurValue=13, binThreshold=128)`: Version one of the background subtraction (not very good)
+   - `sil_V2(img)`: Version two of the background subtraction (Perfect but time and resource-consuming)
+   - `crop_to_person(image, target_size=(64, 44))`: Crops the frame to fit the subject in place and resize it to the given size
+   - `pre_process(frame, width=240, height=320)`: Applies all the pre-processing needed to match CASIA-B dataset
 
 4. **Predict.py**
-   - `pred_show(feed, model, names, subjects)`: applies prediction
-   - `high_prob(predictions)`: decides which subject has the highest probability of being correct
-   - `final_pred(video, model_path)`: applies all preprocessing needed
+   - `pred_show(feed, model, names, subjects)`: Applies prediction
+   - `high_prob(predictions)`: Decides which subject has the highest probability of being correct
+   - `final_pred(video, model_path)`: Applies all preprocessing needed
 
 ## Preprocessing
-We combined the CASIA-B dataset with our custom dataset, resulting in a total of 130 subjects. Each subject has 11 views, with each view containing 10 videos. Each video averages 40 frames, but we only used the 90-degree view for training the model. Human silhouettes were extracted from each frame using a pre-trained model from [this paper](https://github.com/jordankzf/human-silhouette-extractor) and then cropped using a custom code.
+We combined the CASIA-B dataset with our custom dataset, resulting in a total of 130 subjects. Each subject has 11 views, with each view containing 10 videos. Each video averages 40 frames which get captured by the implemenation in next section [Developed Functions (dataset_capture)](https://github.com/LanceAziz/Human-Gait-Identification/tree/main?tab=readme-ov-file#developed-functions) , but we only used the 90-degree view for training the model. Human silhouettes were extracted from each frame using a pre-trained model from [this repo](https://github.com/jordankzf/human-silhouette-extractor) whcih is implemented in next section [Developed Functions (sil_V2)](https://github.com/LanceAziz/Human-Gait-Identification/tree/main?tab=readme-ov-file#developed-functions) then cropped using a custom code whcih is implemented in next section [Developed Functions (crop_to_person)](https://github.com/LanceAziz/Human-Gait-Identification/tree/main?tab=readme-ov-file#developed-functions).
 
 ## Model Parameters
 - **Model**: CNN
