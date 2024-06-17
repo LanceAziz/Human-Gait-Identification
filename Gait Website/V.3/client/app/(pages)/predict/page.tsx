@@ -128,7 +128,7 @@ function Predict() {
                 </div>
             </div>
             <div className="row pt-4">
-                <h2 className="d-flex justify-content-center">Message: <span id="PredictionResult">{' ' + message}</span></h2>
+                <h2 className="d-flex justify-content-center">Name: <span id="PredictionResult">{' ' + message}</span></h2>
             </div>
         </div>
     );
