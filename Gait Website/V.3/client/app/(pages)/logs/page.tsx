@@ -14,24 +14,15 @@ function Logs() {
     const [search, setSearch] = useState('');
 
     useEffect(() => {
-        const fetchPredictions = async () => {
-            try {
-                const response = await fetch(getAPI);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                console.log(data);
+        fetch(getAPI)
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
                 setUsersData(data.predictions);
                 setLoading(false);
-            } catch (error) {
-                console.error('Error fetching predictions:', error);
-                setLoading(false); // Ensure loading state is false even if there's an error
-            }
-        };
-
-        fetchPredictions();
-    }, []);
+            })
+    }, [usersData]);
 
     const dateFormatter = (dateTime: string) => {
         const date = new Date(dateTime);
@@ -81,7 +72,7 @@ function Logs() {
                             </tr>
                         </thead>
                         <tbody>
-                            {usersData.filter((user)=>(
+                            {usersData.filter((user) => (
                                 search.toLowerCase() === '' ? user : user.name.toLowerCase().includes(search)
                             )).map((user, index) => (
                                 <tr key={index}>
