@@ -2,7 +2,6 @@
 import styles from "./Predict.module.css"
 import Link from "next/link";
 import { useState, useEffect, useRef } from 'react';
-import ReactPlayer from 'react-player'
 
 function Predict() {
     // Hooks
@@ -17,6 +16,7 @@ function Predict() {
     // (settingMedia) function set the media source to be either LIVE or BROWSE
     const settingMedia = (source: string) => {
         setVideo(null);
+        setLoading(false)
         setMessage('____');
         if (videoRef.current) {
             videoRef.current.srcObject = null;
@@ -78,10 +78,11 @@ function Predict() {
             .then(
                 stream => {
                     if (videoRef.current) {
-                        let video = videoRef.current
-                        video.srcObject = stream;
+                        setLoading(true)
+                        let vid = videoRef.current
+                        vid.srcObject = stream;
                         setStream(stream)
-                        video.play();
+                        vid.play();
                     } else {
                         stream.getTracks().forEach(track => track.stop());
                     }
