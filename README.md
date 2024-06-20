@@ -30,7 +30,7 @@ We created a custom dataset with the following specifications:
 <table>
         <thead>
             <tr>
-                <th>Front End</th>
+                <th rowspan="2">Front End</th>
                 <th colspan="2">Back End</th>
             </tr>
             <tr>
