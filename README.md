@@ -27,6 +27,7 @@ We created a custom dataset with the following specifications:
 
 ## Libraries Used
 
+<div align="center">
 | Front End     | Back End
 | ------------- |------------------------------|
 | Next jS       | OpenCV                       |
@@ -37,6 +38,7 @@ We created a custom dataset with the following specifications:
 | -             | Keras                        |
 | -             | Flask (flask, flask-cors)    |
 | -             | Firebase Admin               |
+</div>
 
 ## Preprocessing
 We combined the CASIA-B dataset with our custom dataset, resulting in a total of 130 subjects. Each subject has 11 views, with each view containing 10 videos. Each video averages 40 frames which get captured by the implemenation in next section [dataset_capture](https://github.com/LanceAziz/Human-Gait-Identification/tree/main?tab=readme-ov-file#developed-functions) , but we only used the 90-degree view for training the model. Human silhouettes were extracted from each frame using a pre-trained model from [this repo](https://github.com/jordankzf/human-silhouette-extractor) whcih is implemented in next section [sil_V2](https://github.com/LanceAziz/Human-Gait-Identification/tree/main?tab=readme-ov-file#developed-functions) then cropped using a custom code whcih is implemented in next section [crop_to_person](https://github.com/LanceAziz/Human-Gait-Identification/tree/main?tab=readme-ov-file#developed-functions).
