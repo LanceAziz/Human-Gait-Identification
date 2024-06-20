@@ -34,7 +34,6 @@ We created a custom dataset with the following specifications:
                 <th colspan="2">Back End</th>
             </tr>
             <tr>
-                <th></th>
                 <th>AI Packages</th>
                 <th>Non-AI Packages</th>
             </tr>
