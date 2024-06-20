@@ -27,47 +27,46 @@ We created a custom dataset with the following specifications:
 
 ## Libraries Used
 
-<table>
+<div align="center">
+   <table>
         <thead>
             <tr>
-                <th rowspan="2">Front End</th>
-                <th colspan="2">Back End</th>
-            </tr>
-            <tr>
-                <th>AI Packages</th>
-                <th>Non-AI Packages</th>
+                <th>Front End</th>
+                <th>Back End</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>Next jS</td>
                 <td>OpenCV</td>
-                <td>Flask (flask, flask-cors)</td>
             </tr>
             <tr>
                 <td>Bootstrap</td>
                 <td>Numpy</td>
-                <td>Firebase Admin</td>
             </tr>
             <tr>
                 <td>Font Awesome</td>
                 <td>MediaPipe</td>
-                <td>-</td>
             </tr>
             <tr>
                 <td>Swiper</td>
                 <td>Pytorch (torch, torchvision)</td>
-                <td>-</td>
             </tr>
             <tr>
                 <td>Sharp</td>
                 <td>Tensorflow</td>
-                <td>-</td>
             </tr>
             <tr>
                 <td>-</td>
                 <td>Keras</td>
+            </tr>
+            <tr>
                 <td>-</td>
+                <td>Flask (flask, flask-cors)</td>
+            </tr>
+            <tr>
+                <td>-</td>
+                <td>Firebase Admin</td>
             </tr>
         </tbody>
     </table>
