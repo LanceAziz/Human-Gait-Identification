@@ -27,17 +27,51 @@ We created a custom dataset with the following specifications:
 
 ## Libraries Used
 
-<div align="center">
-| Front End     | Back End
-| ------------- |------------------------------|
-| Next jS       | OpenCV                       |
-| Bootstrap     | Numpy                        |
-| Font Awesome  | MediaPipe                    |
-| Swiper        | Pytorch (torch, torchvision) |
-| Sharp         | Tensorflow                   |
-| -             | Keras                        |
-| -             | Flask (flask, flask-cors)    |
-| -             | Firebase Admin               |
+<table>
+        <thead>
+            <tr>
+                <th>Front End</th>
+                <th colspan="2">Back End</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>AI Packages</th>
+                <th>Non-AI Packages</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Next jS</td>
+                <td>OpenCV</td>
+                <td>Flask (flask, flask-cors)</td>
+            </tr>
+            <tr>
+                <td>Bootstrap</td>
+                <td>Numpy</td>
+                <td>Firebase Admin</td>
+            </tr>
+            <tr>
+                <td>Font Awesome</td>
+                <td>MediaPipe</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Swiper</td>
+                <td>Pytorch (torch, torchvision)</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Sharp</td>
+                <td>Tensorflow</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>-</td>
+                <td>Keras</td>
+                <td>-</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 ## Preprocessing
