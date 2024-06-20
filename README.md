@@ -27,38 +27,16 @@ We created a custom dataset with the following specifications:
 
 ## Libraries Used
 
-| Front End     | Back End                                                 |
-|               |----------------------------------------------------------|
-|               | AI Packages                  |Non-AI Packages            |
-| ------------- |------------------------------|---------------------------|
-| Next jS       | OpenCV                       | Flask (flask, flask-cors) |
-| Bootstrap     | Numpy                        | Firebase Admin            |
-| Font Awesome  | MediaPipe                    |                           |
-| Swiper        | Pytorch (torch, torchvision) |                           |
-| Sharp         | Tensorflow                   |                           |
-|               | Keras                        |                           |
-
-### Front-End
-1. Next jS
-2. Bootstrap
-3. Font Awesome
-4. Swiper
-5. Sharp
-6. React Player
-
-### Back-End
-
-#### AI Packages
-1. OpenCV
-2. Numpy
-3. MediaPipe
-4. Pytorch (torch, torchvision)
-5. Tensorflow
-6. Keras
-
-#### Non-AI Packages
-1. Flask (flask, flask-cors)
-2. Firebase Admin
+| Front End     | Back End
+| ------------- |------------------------------|
+| Next jS       | OpenCV                       |
+| Bootstrap     | Numpy                        |
+| Font Awesome  | MediaPipe                    |
+| Swiper        | Pytorch (torch, torchvision) |
+| Sharp         | Tensorflow                   |
+| -             | Keras                        |
+| -             | Flask (flask, flask-cors)    |
+| -             | Firebase Admin               |
 
 ## Preprocessing
 We combined the CASIA-B dataset with our custom dataset, resulting in a total of 130 subjects. Each subject has 11 views, with each view containing 10 videos. Each video averages 40 frames which get captured by the implemenation in next section [dataset_capture](https://github.com/LanceAziz/Human-Gait-Identification/tree/main?tab=readme-ov-file#developed-functions) , but we only used the 90-degree view for training the model. Human silhouettes were extracted from each frame using a pre-trained model from [this repo](https://github.com/jordankzf/human-silhouette-extractor) whcih is implemented in next section [sil_V2](https://github.com/LanceAziz/Human-Gait-Identification/tree/main?tab=readme-ov-file#developed-functions) then cropped using a custom code whcih is implemented in next section [crop_to_person](https://github.com/LanceAziz/Human-Gait-Identification/tree/main?tab=readme-ov-file#developed-functions).
