@@ -27,6 +27,16 @@ We created a custom dataset with the following specifications:
 
 ## Libraries Used
 
+| Front End     | Back End                  |                  |
+| ------------- | ------------------------- | ---------------- |
+|               | AI Packages               | Non-AI Packages  |
+| Next jS       | OpenCV                    | Flask (flask, flask-cors) |
+| Bootstrap     | Numpy                     | Firebase Admin   |
+| Font Awesome  | MediaPipe                 |                  |
+| Swiper        | Pytorch (torch, torchvision) |                |
+| Sharp         | Tensorflow                |                  |
+|               | Keras                     |                  |
+
 ### Front-End
 1. Next jS
 2. Bootstrap

@@ -108,7 +108,7 @@ function Predict() {
                 {mediaSource == 'Browse' &&
                     <div className="col-12 d-flex justify-content-center pb-3">
                         <div className="col-6 bg-black rounded rounded-5 p-1">
-                            <input id="BrowseBtn" type="file" onChange={videoShow} />
+                            <input id="BrowseBtn" type="file" accept="video/*" onChange={videoShow} />
                         </div>
                     </div>}
             </div>
