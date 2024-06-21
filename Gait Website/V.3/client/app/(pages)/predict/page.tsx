@@ -2,6 +2,7 @@
 import styles from "./Predict.module.css"
 import Link from "next/link";
 import { useState, useEffect, useRef } from 'react';
+import { io } from 'socket.io-client';
 
 function Predict() {
     // Hooks
@@ -13,6 +14,7 @@ function Predict() {
     const videoRef = useRef<HTMLVideoElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const postAPI = 'http://localhost:8080/post/predictions';
+    const socket = io('http://localhost:8080');
 
     // (settingMedia) function set the media source to be either LIVE or BROWSE
     const settingMedia = (source: string) => {

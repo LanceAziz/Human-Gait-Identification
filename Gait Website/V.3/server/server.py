@@ -1,10 +1,12 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
+import cv2
 from Dev_Fun.Predict import final_pred
 import firebase_admin
 from firebase_admin import credentials, firestore
 from datetime import datetime, timezone
+from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
 CORS(app)
@@ -15,7 +17,7 @@ cred = credentials.Certificate('./firebase.json')
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-
+socketio = SocketIO(app, cors_allowed_origins='*')
 
 @app.route('/get/predictions', methods=['GET'])
 def show_data():
@@ -32,6 +34,7 @@ def show_data():
 
 @app.route('/post/predictions', methods=['POST'])
 def upload_file():
+    print("post function is invoked from the backend")
     if 'file' not in request.files:
         return jsonify(success=False, message="No file part in the request")
     
@@ -56,8 +59,28 @@ def upload_file():
 
     return jsonify(success=True, message=name)
 
+@socketio.on('connect')
+def connect():
+    print('Client connected')
+
+@socketio.on('disconnect')
+def disconnect():
+    print('Client disconnected')
+
+@socketio.on('start_video_stream')
+def start_video_stream():
+    cap = cv2.VideoCapture(0)  # Replace 0 with the camera index you want to use
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+        encoded_frame = cv2.imencode('.jpg', frame)
+        emit('video_frame', encoded_frame.tobytes())
+
+@socketio.on('stop_video_stream')
+def stop_video_stream():
+    print('Video stream stopped')
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
-
-
-# lancooooos
