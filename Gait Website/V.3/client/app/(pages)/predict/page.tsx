@@ -2,7 +2,7 @@
 import styles from "./Predict.module.css"
 import Link from "next/link";
 import { useState, useEffect, useRef } from 'react';
-import { io } from 'socket.io-client';
+import socketIOClient from 'socket.io-client';
 
 function Predict() {
     // Hooks
@@ -14,7 +14,7 @@ function Predict() {
     const videoRef = useRef<HTMLVideoElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const postAPI = 'http://localhost:8080/post/predictions';
-    const socket = io('http://localhost:8080');
+    const ENDPOINT = 'http://localhost:8080'
 
     // (settingMedia) function set the media source to be either LIVE or BROWSE
     const settingMedia = (source: string) => {
@@ -86,7 +86,7 @@ function Predict() {
                         vid.srcObject = stream;
                         setStream(stream)
                         vid.play();
-                        captureFrames();
+                        handleStartStream();
                     } else {
                         stream.getTracks().forEach(track => track.stop());
                     }
@@ -94,36 +94,21 @@ function Predict() {
             )
     };
 
-    const captureFrames = () => {
-        const interval = 1000 / 1; // 15 frames per second
-        const capture = () => {
-            if (videoRef.current && canvasRef.current) {
-                const canvas = canvasRef.current;
-                const context = canvas.getContext('2d');
-                if (context) {
-                    context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-                    canvas.toBlob(blob => {
-                        if (blob) {
-                            const data = new FormData();
-                            data.append('file', blob);
-                            fetch(postAPI, {
-                                method: 'POST',
-                                body: data
-                            })
-                                .then(res => res.json())
-                                .then(data => {
-                                    setMessage(data.message);
-                                })
-                                .catch(err => {
-                                    console.error('Error:', err);
-                                });
-                        }
-                    }, 'image/jpeg');
-                }
-            }
-            setTimeout(capture, interval);
-        };
-        capture();
+    const handleStartStream = () => {
+        const socket = socketIOClient(ENDPOINT);
+        socket.on('connect', () => {
+            console.log('Connected to server');
+            socket.emit('start_live_stream');
+        });
+
+        socket.on('live_predictions', (data) => {
+            setMessage(data.predictions);
+        });
+
+        socket.on('live_stream_status', (data) => {
+            console.log(data.status);
+            // Handle status updates if needed
+        });
     };
 
     const stopStream = () => {
@@ -131,6 +116,11 @@ function Predict() {
             stream.getTracks().forEach(track => track.stop());
             setStream(null);
             setLoading(false)
+            const socket = socketIOClient(ENDPOINT);
+            socket.on('disconnect', () => {
+                console.log('Disconnected from server');
+                socket.emit('disconnect');
+            });
         }
     };
 
