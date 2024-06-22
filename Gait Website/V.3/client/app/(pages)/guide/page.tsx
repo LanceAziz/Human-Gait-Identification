@@ -2,13 +2,14 @@ import styles from "./Guide.module.css"
 import Video from 'next-video';
 
 function Guide() {
+    const linkID = 'GuXh_tJuLvw'
     return (
         <>
             <div className="container px-5">
                 <div className="row">
                     <div className="d-flex justify-content-center pt-5">
                         <div className={`${styles.hcus}`}>
-                            <iframe className="w-100 h-100 rounded-5" src="https://www.youtube.com/embed/uyULsEJRXWA"></iframe>
+                            <iframe className="w-100 h-100 rounded-5" src={`https://www.youtube.com/embed/${linkID}`}></iframe>
                         </div>
                     </div>
                     <h2 className="text-center pt-4 pb-2">Guide</h2>
